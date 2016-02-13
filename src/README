@@ -1,0 +1,101 @@
+Xperimenter is a workflow management tool. Unlike a simple workflow tool,
+Xperimenter manages a workflow tree. In a workfloe tree, multiple workflows
+share tasks common to them, thus eliminating running the same task multiple
+times. Xperimenter is also multi-threading: All the workflows in the tree can
+be run simultaneously.
+The results from running a workflow tree are stored in a directory structure,
+where each directory contains a task. Each directory contains a params.csv
+file, which stores the parameters specifying the task. The results from running
+the task are also contained in the directory.
+A workflow tree is known as a project. The project is stored in project.xml
+in its own directory. Below is an example of the directory structure.
+
+Example workflow tree
+=====================
+
+|--Project-ABC
+	|
+	|--project.xml
+	|
+	|--data-preprocessing
+		|
+		|--params.csv
+		|
+		|--pcim-1
+			|
+			|--params.csv
+			|
+			|--co-clustering-1
+				|
+				|--params.csv
+			|
+			|--co-clustering-2
+				|
+				|--params.csv
+				|
+				|--visualization
+					|
+					|--params.csv
+		|
+		|--pcim-2
+			|
+			|--params.csv
+			|
+			|--co-clustering
+				|
+				|--params.csv
+				|
+				|--visualization
+					|
+					|--params.csv
+		|
+		|--time-window-discretization
+			|
+			|--params.csv
+			|
+			|--k-means
+				|
+				|--params.csv
+				|
+				|--visualization
+					|
+					|--params.csv
+			|
+			|--co-clustering
+				|
+				|--params.csv
+				|
+				|--visualization
+					|
+					|--params.csv
+		|
+		|--correlation-matrix
+			|
+			|--params.csv
+			|
+			|--k-means
+				|
+				|--params.csv
+				|
+				|--visualization
+					|
+					|--params.csv
+
+
+Building the application
+========================
+
+Requirements
+------------
+1)	C++ Boost libraries
+	To install: From a shell, type "sudo port -v install boost"
+2)	Boost.Process
+	Download from http://www.highscore.de/boost/process/ and unzip
+	Copy boost/process and boost/process.hpp to /opt/local/include/boost
+	Copy libs/process to /opt/local/lib
+3)	wxWidgets
+	To install: From a shell, type "sudo port -v install wxwidgets"
+
+Make
+----
+1)	From a shell, cd into the source directory and type "make"
