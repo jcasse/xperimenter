@@ -35,7 +35,7 @@ Requirements
 ### Installation
 
 ```sh
-$ git clone <git-repo-url>
+$ git clone git@github.com:jcasse/xperimenter.git
 $ cd xperimenter
 $ make
 ```
