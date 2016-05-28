@@ -19,12 +19,32 @@ SRC           := $(wildcard $(SRCDIR)/*.cpp)
 OBJ           := $(patsubst $(SRCDIR)/%,$(BLDDIR)/%,$(SRC:.cpp=.o))
 DEP           := $(patsubst $(SRCDIR)/%,$(DEPDIR)/%,$(SRC:.cpp=.d))
 
-CPP           := g++
+CPP            = $(shell wx-config --cxx)
 
 DEPFLAGS       = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 WFLAGS        := -W -Wall -Wextra -Werror -Wfatal-errors
-CPPFLAGS      := -O3 -ansi -std=gnu++11
+CPPFLAGS       = -std=gnu++11 `wx-config --cxxflags`
 INC           := -I include
+INC           += -I /opt/local/include
+#INC           += -I /usr/include
+LDFLAGS       := -L /opt/local/lib
+#LDFLAGS       += -L /usr/lib/x86_64-linux-gnu
+
+LDLIBS   = `wx-config --libs core,base,propgrid,adv` # added core,base,propgrid
+#LDLIBS  += -lwx_osx_cocoau_propgrid-3.0.0.2.0 # or add core,base,propgrid above
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+    LDLIBS  += -lboost_system
+    LDLIBS  += -lboost_filesystem
+    LDLIBS  += -lboost_serialization
+    LDLIBS  += -lboost_thread
+endif
+ifeq ($(UNAME_S),Darwin)
+    LDLIBS  += -lboost_system-mt
+    LDLIBS  += -lboost_filesystem-mt
+    LDLIBS  += -lboost_serialization-mt
+    LDLIBS  += -lboost_thread-mt
+endif
 
 Compile        = $(CPP) $(DEPFLAGS) $(CPPFLAGS) $(INC) -c
 Link           = $(CPP) $(LDFLAGS) $(LDLIBS)
