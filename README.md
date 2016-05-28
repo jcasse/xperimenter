@@ -22,7 +22,7 @@ in its own directory.
 Requirements
 
 1)	C++ Boost libraries
-	To install: From a shell, type "sudo port -v install boost"
+	To install on OS X: From a shell, type "sudo port -v install boost"
 
 2)	Boost.Process
 	Download from http://www.highscore.de/boost/process/ and unzip
@@ -30,24 +30,19 @@ Requirements
 	Copy libs/process to /opt/local/lib
 
 3)	wxWidgets
-	To install: From a shell, type "sudo port -v install wxwidgets"
+	To install on OS X: From a shell, type "sudo port -v install wxwidgets"
 
 ### Installation
 
 ```sh
 $ git clone git@github.com:jcasse/xperimenter.git
-$ cd xperimenter
+$ cd xperimenter/src
 $ make
 ```
 ### Usage
 
 ```sh
-$ bin/blockmodel-visualization <input dir>
-To quit: press 'esc' key
-
-Example:
-
-main ~/Research/datasets/multi/binary_3d/multi-clustering/multi-clustering_20120901090553/
+$ src/Xperimenter
 ```
 
 License
